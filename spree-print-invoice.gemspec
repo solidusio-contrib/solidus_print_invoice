@@ -17,4 +17,7 @@ Gem::Specification.new do |s|
   s.add_dependency('spree_core', '~> 2.3.0.beta')
 
   s.add_development_dependency 'rspec-rails', '~> 2.14.0'
+  s.add_development_dependency 'sass-rails'
+  s.add_development_dependency 'coffee-rails'
+  s.add_development_dependency 'spree_auth_devise'
 end
