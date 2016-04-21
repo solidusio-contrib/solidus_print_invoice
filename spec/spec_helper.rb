@@ -1,37 +1,17 @@
-unless defined? SPREE_ROOT
-  ENV["RAILS_ENV"] = "test"
-  case
-  when ENV["SPREE_ENV_FILE"]
-    require ENV["SPREE_ENV_FILE"]
-  when File.dirname(__FILE__) =~ %r{vendor/SPREE/vendor/extensions}
-    require "#{File.expand_path(File.dirname(__FILE__) + "/../../../../../../")}/config/environment"
-  else
-    require "#{File.expand_path(File.dirname(__FILE__) + "/../../../../")}/config/environment"
-  end
-end
-require "#{SPREE_ROOT}/spec/spec_helper"
+ENV["RAILS_ENV"] ||= "test"
 
-if File.directory?(File.dirname(__FILE__) + "/scenarios")
-  Scenario.load_paths.unshift File.dirname(__FILE__) + "/scenarios"
-end
-if File.directory?(File.dirname(__FILE__) + "/matchers")
-  Dir[File.dirname(__FILE__) + "/matchers/*.rb"].each {|file| require file }
-end
+require File.expand_path("../dummy/config/environment.rb", __FILE__)
 
-Spec::Runner.configure do |config|
-  # config.use_transactional_fixtures = true
-  # config.use_instantiated_fixtures  = false
-  # config.fixture_path = RAILS_ROOT + '/spec/fixtures'
+require "rspec/rails"
 
-  # You can declare fixtures for each behaviour like this:
-  #   describe "...." do
-  #     fixtures :table_a, :table_b
-  #
-  # Alternatively, if you prefer to declare them only once, you can
-  # do so here, like so ...
-  #
-  #   config.global_fixtures = :table_a, :table_b
-  #
-  # If you declare global fixtures, be aware that they will be declared
-  # for all of your examples, even those that don't use them.
+Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
+
+RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
+
+  config.filter_run :focus
+  config.run_all_when_everything_filtered = true
+  config.use_transactional_fixtures = false
+  config.example_status_persistence_file_path = "tmp/failed_examples.txt"
+  config.disable_monkey_patching!
 end
