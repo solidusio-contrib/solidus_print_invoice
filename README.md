@@ -10,7 +10,7 @@ INSTALLATION
 1. The gem relies only on the prawn gem, to install you need to add the following lines to your Gemfile
 
   ```ruby
-  gem 'spree_print_invoice' , github: 'spree/spree_print_invoice'
+  gem 'solidus_print_invoice' , github: 'spree/solidus_print_invoice'
   ```
 
 2. Run bundler
@@ -22,7 +22,7 @@ INSTALLATION
 3. Install migration
 
   ```shell
-  $ rails g spree_print_invoice:install
+  $ rails g solidus_print_invoice:install
   ```
 
 4. Enjoy! Now allow to generate invoices with sequential numbers

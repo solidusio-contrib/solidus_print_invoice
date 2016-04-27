@@ -17,6 +17,6 @@ end
 
 desc 'Generates a dummy app for testing'
 task :test_app do
-  ENV['LIB_NAME'] = 'spree_print_invoice'
+  ENV['LIB_NAME'] = 'solidus_print_invoice'
   Rake::Task['common:test_app'].invoke("Spree::User")
 end

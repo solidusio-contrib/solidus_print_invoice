@@ -3,6 +3,6 @@ Deface::Override.new(:virtual_path => "spree/admin/general_settings/edit",
                      :insert_before => ".filter-actions.form-buttons",
                      :partial => "spree/admin/general_settings/invoice",
                      # :disabled => false)
-                     :disabled => !Object.const_defined?('SpreePrintInvoice'))
+                     :disabled => !Object.const_defined?('SolidusPrintInvoice'))
 
 
