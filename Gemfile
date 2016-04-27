@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gemspec
+branch = ENV.fetch("SOLIDUS_BRANCH", "master")
+gem 'solidus', github: "solidusio/solidus", branch: branch
+gem 'solidus_auth_devise'
 
-gem 'spree', '~> 2.4.0'
-gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '2-4-stable'
-gem 'sqlite3'
+gemspec
