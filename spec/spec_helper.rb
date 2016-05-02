@@ -1,37 +1,50 @@
-unless defined? SPREE_ROOT
-  ENV["RAILS_ENV"] = "test"
-  case
-  when ENV["SPREE_ENV_FILE"]
-    require ENV["SPREE_ENV_FILE"]
-  when File.dirname(__FILE__) =~ %r{vendor/SPREE/vendor/extensions}
-    require "#{File.expand_path(File.dirname(__FILE__) + "/../../../../../../")}/config/environment"
-  else
-    require "#{File.expand_path(File.dirname(__FILE__) + "/../../../../")}/config/environment"
+ENV["RAILS_ENV"] ||= "test"
+
+require File.expand_path("../dummy/config/environment.rb", __FILE__)
+
+require "rspec/rails"
+require 'capybara/poltergeist'
+require 'database_cleaner'
+require 'factory_girl_rails'
+require 'ffaker'
+require 'pry'
+
+require 'spree/testing_support/factories'
+
+unless ENV['USE_SELENIUM']
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, timeout: 60)
   end
-end
-require "#{SPREE_ROOT}/spec/spec_helper"
-
-if File.directory?(File.dirname(__FILE__) + "/scenarios")
-  Scenario.load_paths.unshift File.dirname(__FILE__) + "/scenarios"
-end
-if File.directory?(File.dirname(__FILE__) + "/matchers")
-  Dir[File.dirname(__FILE__) + "/matchers/*.rb"].each {|file| require file }
+  Capybara.javascript_driver = :poltergeist
 end
 
-Spec::Runner.configure do |config|
-  # config.use_transactional_fixtures = true
-  # config.use_instantiated_fixtures  = false
-  # config.fixture_path = RAILS_ROOT + '/spec/fixtures'
+Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
 
-  # You can declare fixtures for each behaviour like this:
-  #   describe "...." do
-  #     fixtures :table_a, :table_b
-  #
-  # Alternatively, if you prefer to declare them only once, you can
-  # do so here, like so ...
-  #
-  #   config.global_fixtures = :table_a, :table_b
-  #
-  # If you declare global fixtures, be aware that they will be declared
-  # for all of your examples, even those that don't use them.
+RSpec.configure do |config|
+  config.include Capybara::DSL, type: :feature
+  config.infer_spec_type_from_file_location!
+
+  config.filter_run :focus
+  config.run_all_when_everything_filtered = true
+  config.use_transactional_fixtures = false
+  config.example_status_persistence_file_path = "tmp/failed_examples.txt"
+  config.disable_monkey_patching!
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    if RSpec.current_example.metadata[:js]
+      DatabaseCleaner.strategy = :truncation
+    else
+      DatabaseCleaner.strategy = :transaction
+    end
+
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end

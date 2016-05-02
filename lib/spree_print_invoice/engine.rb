@@ -1,3 +1,5 @@
+require 'deface'
+
 module SpreePrintInvoice
   class Engine < Rails::Engine
     engine_name 'spree_print_invoice'
