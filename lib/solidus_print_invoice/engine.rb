@@ -1,8 +1,8 @@
 require 'deface'
 
-module SpreePrintInvoice
+module SolidusPrintInvoice
   class Engine < Rails::Engine
-    engine_name 'spree_print_invoice'
+    engine_name 'solidus_print_invoice'
     
     initializer "spree.print_invoice.environment", :before => :load_config_initializers do |app|
       Spree::PrintInvoice::Config = Spree::PrintInvoiceConfiguration.new

@@ -3,6 +3,8 @@ SUMMARY
 
 This extension provides a "Print Invoice" button on the Admin Orders view screen which generates a PDF of the order details.
 
+This is meant to provide an example of how this can be done, and is easily extended by overriding the templates however you prefer.
+
 
 INSTALLATION
 ============
@@ -10,7 +12,7 @@ INSTALLATION
 1. The gem relies only on the prawn gem, to install you need to add the following lines to your Gemfile
 
   ```ruby
-  gem 'spree_print_invoice' , github: 'spree/spree_print_invoice'
+  gem 'solidus_print_invoice' , github: 'solidusio-contrib/solidus_print_invoice'
   ```
 
 2. Run bundler
@@ -19,14 +21,11 @@ INSTALLATION
   $ bundle install
   ```
 
-3. Install migration
+3. Install migrations
 
   ```shell
-  $ rails g spree_print_invoice:install
+  $ rails g solidus_print_invoice:install
   ```
-
-4. Enjoy! Now allow to generate invoices with sequential numbers
-
 
 Configuration
 ==============
@@ -64,12 +63,3 @@ Configuration
   ```ruby
   Spree::PrintInvoice::Config.set(prawn_options: { page_layout: :landscape, page_size: "A4", margin: [50, 100, 150, 200] })
   ```
-
-Plans
-=====
-Next receipts and then product related stuff with barcodes.
-
-
-Contributions welcome
-
-Torsten

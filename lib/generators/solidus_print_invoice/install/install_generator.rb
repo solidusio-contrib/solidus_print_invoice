@@ -1,10 +1,10 @@
-module SpreePrintInvoice
+module SolidusPrintInvoice
   module Generators
     class InstallGenerator < Rails::Generators::Base
       class_option :auto_run_migrations, :type => :boolean, :default => true
 
       def add_migrations
-        run 'rake railties:install:migrations FROM=spree_print_invoice'
+        run 'rake railties:install:migrations FROM=solidus_print_invoice'
       end
 
       def run_migrations
