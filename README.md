@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/solidusio-contrib/solidus_print_invoice.svg?branch=master)](https://travis-ci.org/solidusio-contrib/solidus_print_invoice)
+
 SUMMARY
 =======
 
