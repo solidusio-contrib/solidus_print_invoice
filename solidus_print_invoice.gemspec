@@ -17,16 +17,16 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.authors      = 'Spree & Solidus Community'
 
-  s.add_dependency('prawn', '1.0.0')
-  s.add_dependency('solidus', '~> 1.0')
+  s.add_dependency 'prawn', '1.0.0'
+  s.add_dependency 'solidus', ['>= 1.0', '< 3']
   s.add_dependency 'deface'
 
   s.add_development_dependency 'rspec-rails', '~> 3.4'
   s.add_development_dependency 'capybara'
+  s.add_development_dependency 'capybara-screenshot'
   s.add_development_dependency 'selenium-webdriver'
   s.add_development_dependency 'poltergeist'
   s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'pry'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'sqlite3'
 end

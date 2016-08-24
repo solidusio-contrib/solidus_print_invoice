@@ -12,7 +12,6 @@ RSpec.feature "Print Invoice Settings", js: true do
     click_button "Login"
 
     click_link "Settings"
-    click_link "General"
 
     select "Times Roman", from: "print_invoice_font_face"
     fill_in "print_invoice_next_number", with: "150"

@@ -4,6 +4,7 @@ require File.expand_path("../dummy/config/environment.rb", __FILE__)
 
 require "rspec/rails"
 require 'capybara/poltergeist'
+require 'capybara-screenshot/rspec'
 require 'database_cleaner'
 require 'factory_girl_rails'
 require 'ffaker'
