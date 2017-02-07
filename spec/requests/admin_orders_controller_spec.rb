@@ -8,7 +8,7 @@ RSpec.describe "Order Invoice Generation" do
 
     it "returns a pdf" do
       # The invoice generation feature is restricted to admins
-      post(spree.login_path, 'spree_user[email]' => user.email, 'spree_user[password]' => 'testing123')
+      post(spree.login_path, params: { 'spree_user[email]' => user.email, 'spree_user[password]' => 'testing123' })
       get(spree.admin_order_path(order.number, :pdf))
 
       aggregate_failures "pdf response is successful" do

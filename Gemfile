@@ -6,6 +6,8 @@ gem "solidus_auth_devise"
 
 if branch == 'master' || branch >= "v2.0"
   gem "rails-controller-testing", group: :test
+else
+  gem "rails_test_params_backport"
 end
 
 gem 'pg'
