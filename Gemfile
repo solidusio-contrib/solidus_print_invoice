@@ -6,6 +6,7 @@ gem "solidus_auth_devise"
 
 if branch == 'master' || branch >= "v2.0"
   gem "rails-controller-testing", group: :test
+  gem 'rails', '~> 5.0.0' # hack for broken bundler dependency resolution
 else
   gem "rails_test_params_backport"
   gem "rails", "~> 4.2.7"
