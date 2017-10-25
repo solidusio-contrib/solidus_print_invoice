@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 RSpec.feature "Print Invoice button", js: true do
-  given!(:order) { FactoryGirl.create(:completed_order_with_totals) }
-  given(:user) { FactoryGirl.create(:admin_user, password: "boxen1011") }
+  given!(:order) { FactoryBot.create(:completed_order_with_totals) }
+  given(:user) { FactoryBot.create(:admin_user, password: "boxen1011") }
 
   scenario "it displays a print invoice button on order pages" do
     visit spree.admin_path

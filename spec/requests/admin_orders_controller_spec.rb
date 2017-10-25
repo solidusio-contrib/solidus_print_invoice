@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe "Order Invoice Generation" do
   describe "GET show" do
-    let(:order) { FactoryGirl.create(:completed_order_with_totals) }
-    let(:user) { FactoryGirl.create(:admin_user, password: "testing123") }
+    let(:order) { FactoryBot.create(:completed_order_with_totals) }
+    let(:user) { FactoryBot.create(:admin_user, password: "testing123") }
     let(:headers) {{ "X-Spree-Token" => user.spree_api_key }}
 
     it "returns a pdf" do

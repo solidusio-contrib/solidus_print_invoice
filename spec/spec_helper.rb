@@ -6,7 +6,7 @@ require "rspec/rails"
 require 'capybara/poltergeist'
 require 'capybara-screenshot/rspec'
 require 'database_cleaner'
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 require 'ffaker'
 require 'pry'
 
