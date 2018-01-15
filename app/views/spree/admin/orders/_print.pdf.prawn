@@ -17,7 +17,7 @@ fill_color "000000"
 
 move_down 4
 
-if Spree::PrintInvoice::Config.use_sequential_number? && @order.invoice_number.present? && !@hide_prices
+if Spree::PrintInvoice::Config.use_sequential_number?(@order.store) && @order.invoice_number.present? && !@hide_prices
 
   font @font_face,  :size => 9,  :style => :bold
   text "#{Spree.t(:invoice_number)} #{@order.invoice_number}", :align => :right

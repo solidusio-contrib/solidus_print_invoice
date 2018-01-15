@@ -6,8 +6,8 @@ Spree::Admin::OrdersController.class_eval do
     respond_with(@order) do |format|
       format.pdf do
         template = params[:template] || "invoice"
-        if (template == "invoice") && Spree::PrintInvoice::Config.use_sequential_number? && !@order.invoice_number.present?
-          @order.invoice_number = Spree::PrintInvoice::Config.increase_invoice_number
+        if (template == "invoice") && Spree::PrintInvoice::Config.use_sequential_number?(@order.store) && !@order.invoice_number.present?
+          @order.invoice_number = Spree::PrintInvoice::Config.increase_invoice_number(@order.store)
           @order.invoice_date = Date.today
           @order.save!
         end
@@ -15,5 +15,4 @@ Spree::Admin::OrdersController.class_eval do
       end
     end
   end
-
 end
