@@ -1,0 +1,21 @@
+fr:
+  spree:
+    customer_invoice: Facture client
+    footer_left: "Retour dans Autres infos"
+    footer_left2: " 14 jours ou jamais"
+
+    footer_right: "Société  téléphoner  www "
+    footer_right2: " My great company 040 146 1222 www.gohereoften.com"
+
+    print_note: Ce n'est pas une facture originale (NE PAS ENVOYER AU CLIENT)
+
+    invoice_print: Imprimer facture
+    packaging_slip_print: bordereau d'impression
+    packaging_slip: Bordereau d'emballage
+
+    invoice_font_face: Facture Font Face
+    invoice_logo_scale: Facture Logo Scale
+
+    invoice_number: Numéro de facture
+    invoice_date: Facture émise le
+
