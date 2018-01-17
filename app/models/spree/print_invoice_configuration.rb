@@ -7,6 +7,9 @@ module Spree
     preference :print_invoice_font_face, :string, :default => 'Helvetica'
     preference :print_buttons, :string, :default => 'invoice'
     preference :prawn_options, :hash, :default => {}
+    preference :prefix, :string, :default => ''
+
+    class_name_attribute :current_invoice_number_generator_class, :default => 'Spree::Orders::InvoiceNumberGenerator::Default'
 
     def use_sequential_number?
       print_invoice_next_number.present? && print_invoice_next_number > 0
@@ -17,6 +20,5 @@ module Spree
       set_preference(:print_invoice_next_number, current_invoice_number + 1)
       current_invoice_number
     end
-
   end
 end
