@@ -1,2 +1,5 @@
 Gemfile.lock
 spec/dummy
+tmp/
+pkg/
+spec/examples.txt
