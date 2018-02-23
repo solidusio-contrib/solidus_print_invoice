@@ -15,7 +15,7 @@ end
   row << item.variant.options_text
   row << item.single_display_amount.to_s unless @hide_prices
   row << item.quantity
-  row << item.display_total.to_s unless @hide_prices
+  row << item.display_amount.to_s unless @hide_prices
   data << row
 end
 

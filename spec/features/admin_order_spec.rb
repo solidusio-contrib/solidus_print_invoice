@@ -13,9 +13,6 @@ RSpec.feature "Print Invoice button", js: true do
 
     click_link order.number
 
-    within(".page-actions") do
-      print_button = find("a", text: /Print Invoice/i)
-      expect(URI(print_button[:href]).path).to eql(spree.admin_order_path(order, :pdf))
-    end
+    expect(page).to have_link('Print Invoice', href: spree.admin_order_path(order, :pdf, template: 'invoice'))
   end
 end
