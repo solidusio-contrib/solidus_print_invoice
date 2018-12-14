@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 RSpec.describe "Order Invoice Generation" do
+  before do
+    ActionController::Base.allow_forgery_protection = false
+  end
+
+  after do
+    ActionController::Base.allow_forgery_protection = true
+  end
+
   describe "GET show" do
     let(:order) { FactoryBot.create(:completed_order_with_totals) }
     let(:user) { FactoryBot.create(:admin_user, password: "testing123") }
