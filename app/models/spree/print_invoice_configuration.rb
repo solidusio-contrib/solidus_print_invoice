@@ -2,7 +2,7 @@ module Spree
   class PrintInvoiceConfiguration < Preferences::Configuration
 
     preference :print_invoice_next_number, :integer, :default => nil
-    preference :print_invoice_logo_path, :string, :default => Spree::Config[:admin_interface_logo]
+    preference :print_invoice_logo_path, :string, :default => 'logo/solidus_logo.png'
     preference :print_invoice_logo_scale, :integer, :default => 50
     preference :print_invoice_font_face, :string, :default => 'Helvetica'
     preference :print_buttons, :string, :default => 'invoice'
