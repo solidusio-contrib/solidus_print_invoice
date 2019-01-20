@@ -4,7 +4,7 @@ require 'prawn/layout'
 
 font @font_face
 
-im = Rails.application.assets.find_asset(Spree::PrintInvoice::Config[:print_invoice_logo_path])
+im = Sprockets::Railtie.build_environment(Rails.application).find_asset(Spree::PrintInvoice::Config[:print_invoice_logo_path])
 image im.filename , :at => [0,720], :scale => logo_scale
 
 fill_color "E99323"
@@ -49,4 +49,3 @@ move_down 8
 
 # Footer
 render :partial => "footer"
-
