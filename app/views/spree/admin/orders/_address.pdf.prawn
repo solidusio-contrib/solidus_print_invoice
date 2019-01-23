@@ -20,7 +20,7 @@ end
 
 
 data = [
-  [Spree.t(:billing_address), Spree.t(:shipping_address)], 
+  [I18n.t('spree.billing_address'), I18n.t('spree.shipping_address')],
   [address_info(bill_address), address_info(ship_address) + "\n\nvia #{@order.shipments.first.shipping_method.name}"]
 ]
 
