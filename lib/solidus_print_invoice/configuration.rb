@@ -1,5 +1,5 @@
-module Spree
-  class PrintInvoiceConfiguration < Preferences::Configuration
+module SolidusPrintInvoice
+  class Configuration < Spree::Preferences::Configuration
     preference :print_invoice_next_number, :integer, :default => nil
 
     # To avoid breaking stores with custom logos on their invoices and to
