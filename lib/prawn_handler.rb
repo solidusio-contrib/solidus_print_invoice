@@ -2,22 +2,22 @@ require 'prawn'
 
 module ActionView
   module Template::Handlers
-    class Prawn 
+    class Prawn
       def self.register!
         Template.register_template_handler :prawn, self
       end
-            
+
       def self.call(template)
         %(extend #{DocumentProxy}; #{template.source}; pdf.render)
       end
-      
+
       module DocumentProxy
         def pdf
-          @pdf ||= ::Prawn::Document.new(Spree::PrintInvoice::Config[:prawn_options])
+          @pdf ||= ::Prawn::Document.new(SolidusPrintInvoice::Config[:prawn_options])
         end
-        
+
       private
-      
+
         def method_missing(method, *args, &block)
           pdf.respond_to?(method) ? pdf.send(method, *args, &block) : super
         end
