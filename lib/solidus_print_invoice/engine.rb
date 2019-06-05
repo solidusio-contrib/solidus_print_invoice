@@ -1,5 +1,3 @@
-require 'deface'
-
 module SolidusPrintInvoice
   class Engine < Rails::Engine
     isolate_namespace Spree
