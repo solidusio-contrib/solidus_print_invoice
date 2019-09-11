@@ -20,7 +20,7 @@ RSpec.describe "Order Invoice Generation" do
       get(spree.admin_order_path(order.number, :pdf))
 
       aggregate_failures "pdf response is successful" do
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response.headers["Content-Type"]).to eql("application/pdf; charset=utf-8")
         expect(response.body).to start_with('%PDF')
       end
