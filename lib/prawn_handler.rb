@@ -9,8 +9,9 @@ module ActionView
         Template.register_template_handler :prawn, self
       end
 
-      def self.call(template)
-        %(extend #{DocumentProxy}; #{template.source}; pdf.render)
+      def self.call(template, source = nil)
+        source ||= template.source
+        %(extend #{DocumentProxy}; #{source}; pdf.render)
       end
 
       module DocumentProxy
