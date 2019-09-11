@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/solidusio-contrib/solidus_print_invoice.svg?branch=master)](https://travis-ci.org/solidusio-contrib/solidus_print_invoice)
+[![CircleCI](https://circleci.com/gh/solidusio-contrib/solidus_print_invoice.svg?style=svg)](https://circleci.com/gh/solidusio-contrib/solidus_print_invoice)
 
 SUMMARY
 =======
