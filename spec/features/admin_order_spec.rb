@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-RSpec.feature "Print Invoice button", js: true do
-  given!(:order) { FactoryBot.create(:completed_order_with_totals) }
-  given(:user) { FactoryBot.create(:admin_user, password: "boxen1011") }
+RSpec.describe "Print Invoice button", js: true do
+  let!(:order) { FactoryBot.create(:completed_order_with_totals) }
+  let(:user) { FactoryBot.create(:admin_user, password: "boxen1011") }
 
-  scenario "it displays a print invoice button on order pages" do
+  it "displays a print invoice button on order pages" do
     visit spree.admin_path
 
     fill_in "Email", with: user.email
