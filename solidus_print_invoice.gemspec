@@ -22,12 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency "solidus_support"
   s.add_dependency 'deface'
 
-  s.add_development_dependency 'rspec-rails', '~> 3.4'
-  s.add_development_dependency 'capybara', '~> 2.18'
-  s.add_development_dependency 'capybara-screenshot'
-  s.add_development_dependency 'selenium-webdriver'
-  s.add_development_dependency 'poltergeist'
-  s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'factory_bot_rails'
-  s.add_development_dependency 'ffaker'
+  s.add_development_dependency 'solidus_extension_dev_tools'
 end
