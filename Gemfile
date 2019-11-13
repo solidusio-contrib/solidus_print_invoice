@@ -7,9 +7,11 @@ gem 'solidus_auth_devise'
 
 case ENV['DB']
 when 'mysql'
-  gem 'mysql2', '~> 0.4.10'
+  gem 'mysql2'
+when 'postgresql'
+  gem 'pg'
 else
-  gem 'pg', '~> 0.21'
+  gem 'sqlite3'
 end
 
 gemspec
