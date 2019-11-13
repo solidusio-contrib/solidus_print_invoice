@@ -1,5 +1,6 @@
-Spree::Core::Engine.routes.append do
+# frozen_string_literal: true
 
+Spree::Core::Engine.routes.append do
   namespace :admin do
     resources :orders do
       member do
@@ -7,5 +8,4 @@ Spree::Core::Engine.routes.append do
       end
     end
   end
-
 end

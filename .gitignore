@@ -3,3 +3,4 @@ spec/dummy
 tmp/
 pkg/
 spec/examples.txt
+coverage/
