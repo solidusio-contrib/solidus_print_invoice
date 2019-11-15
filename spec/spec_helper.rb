@@ -1,15 +1,11 @@
-ENV["RAILS_ENV"] ||= "test"
+# frozen_string_literal: true
 
-require File.expand_path("../dummy/config/environment.rb", __FILE__)
+ENV['RAILS_ENV'] ||= 'test'
 
-require "solidus_support/extension/feature_helper"
+require 'solidus_extension_dev_tools/rspec/coverage'
 
-Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
+require File.expand_path('dummy/config/environment.rb', __dir__)
 
-RSpec.configure do |config|
-  config.include Capybara::DSL, type: :feature
-  config.infer_spec_type_from_file_location!
-  config.raise_errors_for_deprecations!
+require 'solidus_extension_dev_tools/rspec/feature_helper'
 
-  config.example_status_persistence_file_path = "./spec/examples.txt"
-end
+Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
