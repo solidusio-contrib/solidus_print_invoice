@@ -8,7 +8,7 @@ require 'solidus_print_invoice/version'
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus_print_invoice'
-  s.version     = Spree::PrintInvoice::VERSION
+  s.version = SolidusPrintInvoice::VERSION
   s.summary     = 'Print invoices from a spree order'
   s.homepage    = 'https://github.com/solidusio-contrib/solidus_print_invoice'
 
