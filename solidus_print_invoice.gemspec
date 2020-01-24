@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.license = 'BSD-3-Clause'
 
   s.authors = 'Spree & Solidus Community'
-  # s.email = 'you@example.com'
+  s.email = 'contact@solidus.io'
   s.homepage = 'https://github.com/solidusio-contrib/solidus_print_invoice'
 
   if s.respond_to?(:metadata)
