@@ -3,17 +3,18 @@
 module SolidusPrintInvoice
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      class_option :auto_run_migrations, type: :boolean, default: true
+      class_option :auto_run_migrations, type: :boolean, default: false
 
       def add_migrations
-        run 'rake railties:install:migrations FROM=solidus_print_invoice'
+        run 'bundle exec rake railties:install:migrations FROM=solidus_print_invoice'
       end
 
       def run_migrations
-        if options[:auto_run_migrations] || ['', 'y', 'Y'].include?(ask("Would you like to run the migrations now? [Y/n]"))
-          run 'rake db:migrate'
+        run_migrations = options[:auto_run_migrations] || ['', 'y', 'Y'].include?(ask('Would you like to run the migrations now? [Y/n]'))
+        if run_migrations
+          run 'bundle exec rake db:migrate'
         else
-          puts "Skiping rake db:migrate, don't forget to run it!"
+          puts 'Skipping rake db:migrate, don\'t forget to run it!' # rubocop:disable Rails/Output
         end
       end
     end

@@ -7,6 +7,7 @@ module SolidusPrintInvoice
         def self.prepended(base)
           base.class_eval do
             respond_to :pdf
+            helper ::Spree::Admin::PrintInvoiceHelper
           end
         end
 
