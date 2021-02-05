@@ -21,7 +21,7 @@ module SolidusPrintInvoice
                 @order.invoice_date = Date.today
                 @order.save!
               end
-              render layout: false, template: "spree/admin/orders/#{template}.pdf.prawn"
+              render layout: false, template: "spree/admin/orders/#{template}", formats: [:pdf], handlers: [:prawn]
             end
           end
         end
