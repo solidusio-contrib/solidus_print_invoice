@@ -66,6 +66,12 @@ $ rails g solidus_print_invoice:install
   Spree::PrintInvoice::Config.set(print_adjustments_grouped_by_label: true)
   ```
 
+9. Set the header text color with
+
+  ```ruby
+  Spree::PrintInvoice::Config.set(print_invoice_header_color: '000000')
+  ```
+
 Testing
 -------
 

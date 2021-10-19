@@ -7,7 +7,7 @@ font @font_face
 im = Sprockets::Railtie.build_environment(Rails.application).find_asset(Spree::PrintInvoice::Config[:print_invoice_logo_path])
 image im.filename , :at => [0,720], :scale => logo_scale
 
-fill_color "E99323"
+fill_color Spree::PrintInvoice::Config[:print_invoice_header_color]
 if @hide_prices
   text I18n.t('spree.packaging_slip'), :align => :right, :style => :bold, :size => 18
 else

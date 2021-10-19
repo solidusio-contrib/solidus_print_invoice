@@ -1,4 +1,4 @@
-fill_color "E99323"
+fill_color Spree::PrintInvoice::Config[:print_invoice_header_color]
 if @hide_prices
   text I18n.t('spree.packaging_slip'), :align => :right, :style => :bold, :size => 18
 else
