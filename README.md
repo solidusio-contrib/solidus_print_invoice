@@ -60,6 +60,12 @@ $ rails g solidus_print_invoice:install
   Spree::PrintInvoice::Config.set(prawn_options: { page_layout: :landscape, page_size: "A4", margin: [50, 100, 150, 200] })
   ```
 
+8. Enable printing adjustments of the order grouped by label, by setting (default: `false`)
+
+  ```ruby
+  Spree::PrintInvoice::Config.set(print_adjustments_grouped_by_label: true)
+  ```
+
 Testing
 -------
 

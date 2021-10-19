@@ -26,9 +26,16 @@ unless @hide_prices
   data << [""] * 5
   data << [nil, nil, nil, nil, I18n.t('spree.subtotal'), @order.display_item_total.to_s]
 
-  @order.all_adjustments.eligible.each do |adjustment|
-    extra_row_count += 1
-    data << [nil, nil, nil, nil, adjustment.label, adjustment.display_amount.to_s]
+  if Spree::PrintInvoice::Config[:print_adjustments_grouped_by_label]
+    @order.all_adjustments.eligible.group_by(&:label).each do |label, adjustments|
+      extra_row_count += 1
+      data << [nil, nil, nil, nil, label, Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency).to_s]
+    end
+  else
+    @order.all_adjustments.eligible.each do |adjustment|
+      extra_row_count += 1
+      data << [nil, nil, nil, nil, adjustment.label, adjustment.display_amount.to_s]
+    end
   end
 
   @order.shipments.each do |shipment|
