@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   end
 
   s.platform = Gem::Platform::RUBY
-  s.required_ruby_version = '~> 2.4'
+  s.required_ruby_version = '>= 2.6'
 
   s.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
