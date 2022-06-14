@@ -2,6 +2,7 @@
 
 require 'spree/core'
 require 'deface'
+require_relative '../../app/models/spree/print_invoice_configuration'
 
 module SolidusPrintInvoice
   class Engine < Rails::Engine
