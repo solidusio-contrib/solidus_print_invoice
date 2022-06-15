@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   end
 
   s.platform = Gem::Platform::RUBY
-  s.required_ruby_version = '~> 2.4'
+  s.required_ruby_version = '>= 2.4'
 
   s.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'solidus_core', ['>= 2.0.0', '< 4']
-  s.add_dependency 'solidus_support', '~> 0.5'
+  s.add_dependency 'solidus_support', '~> 0.9'
   s.add_dependency 'deface'
   s.add_dependency 'prawn', '1.0.0'
   s.add_dependency 'solidus', ['>= 1.0', '< 4']
