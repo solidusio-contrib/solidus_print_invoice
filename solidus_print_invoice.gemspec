@@ -23,21 +23,22 @@ Gem::Specification.new do |s|
   end
 
   s.platform = Gem::Platform::RUBY
-  s.required_ruby_version = '>= 2.4'
+  s.required_ruby_version = '>= 2.5'
 
-  s.files = Dir.chdir(File.expand_path(__dir__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  end
-  s.test_files = Dir['spec/**/*']
-  s.bindir = "exe"
-  s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  s.require_paths = ["lib"]
+  # Specify which files should be added to the gem when it is released.
+  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  files = Dir.chdir(__dir__) { `git ls-files -z`.split("\x0") }
 
-  s.add_dependency 'solidus_core', ['>= 2.0.0', '< 4']
-  s.add_dependency 'solidus_support', '~> 0.9'
-  s.add_dependency 'deface'
+  s.files = files.grep_v(%r{^(test|spec|features)/})
+  s.test_files = files.grep(%r{^(test|spec|features)/})
+  s.bindir = 'exe'
+  s.executables = files.grep(%r{^exe/}) { |f| File.basename(f) }
+  s.require_paths = ['lib']
+
+  s.add_dependency 'solidus_core', ['>= 2.0.0', '< 5']
+  s.add_dependency 'solidus_support', '~> 0.8'
+
   s.add_dependency 'prawn', '1.0.0'
-  s.add_dependency 'solidus', ['>= 1.0', '< 4']
-
-  s.add_development_dependency 'solidus_dev_support'
+  s.add_development_dependency 'rails-controller-testing'
+  s.add_development_dependency 'solidus_dev_support', '~> 2.7'
 end

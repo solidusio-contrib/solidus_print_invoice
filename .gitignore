@@ -14,3 +14,7 @@ pkg
 *.swp
 spec/dummy
 spec/examples.txt
+Gemfile-local
+/sandbox
+.rvmrc
+.ruby-gemset
