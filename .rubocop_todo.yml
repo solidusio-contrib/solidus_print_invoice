@@ -1,0 +1,11 @@
+Layout/ArgumentAlignment:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false
+
+Style/MissingRespondToMissing:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false

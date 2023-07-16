@@ -14,7 +14,7 @@ module Spree
                  'logo/solidus_logo.png'
                else
                  Spree::Config[:admin_interface_logo]
-                  end
+               end
 
     preference :print_invoice_logo_scale, :integer, default: 50
     preference :print_invoice_font_face, :string, default: 'Helvetica'

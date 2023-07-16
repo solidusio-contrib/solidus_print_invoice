@@ -35,10 +35,10 @@ Gem::Specification.new do |s|
   s.executables = files.grep(%r{^exe/}) { |f| File.basename(f) }
   s.require_paths = ['lib']
 
+  s.add_dependency 'prawn', '1.0.0'
   s.add_dependency 'solidus_core', ['>= 2.0.0', '< 5']
   s.add_dependency 'solidus_support', '~> 0.8'
 
-  s.add_dependency 'prawn', '1.0.0'
   s.add_development_dependency 'rails-controller-testing'
   s.add_development_dependency 'solidus_dev_support', '~> 2.7'
 end
