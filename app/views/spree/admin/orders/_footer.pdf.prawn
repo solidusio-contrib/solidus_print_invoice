@@ -1,5 +1,5 @@
 # data = [
-#   [Spree.t(:footer_left), Spree.t(:footer_left2), Spree.t(:footer_right), Spree.t(:footer_right2)]
+#   [I18n.t('spree.footer_left'), I18n.t('spree.footer_left2'), I18n.t('spree.footer_right'), I18n.t('spree.footer_right2')]
 # ]
 
 # table(data)

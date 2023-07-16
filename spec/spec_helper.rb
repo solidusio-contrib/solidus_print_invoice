@@ -1,15 +1,35 @@
-ENV["RAILS_ENV"] ||= "test"
+# frozen_string_literal: true
 
-require File.expand_path("../dummy/config/environment.rb", __FILE__)
+# Configure Rails Environment
+ENV['RAILS_ENV'] = 'test'
 
-require "solidus_support/extension/feature_helper"
+require 'rails-controller-testing'
+Rails::Controller::Testing.install
 
-Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
+# Run Coverage report
+require 'solidus_dev_support/rspec/coverage'
+
+# Create the dummy app if it's still missing.
+dummy_env = "#{__dir__}/dummy/config/environment.rb"
+system 'bin/rake extension:test_app' unless File.exist? dummy_env
+require dummy_env
+
+# Requires factories and other useful helpers defined in spree_core.
+require 'solidus_dev_support/rspec/feature_helper'
+
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir["#{__dir__}/support/**/*.rb"].sort.each { |f| require f }
+
+# Requires factories defined in Solidus core and this extension.
+# See: lib/solidus_print_invoice/testing_support/factories.rb
+SolidusDevSupport::TestingSupport::Factories.load_for(SolidusPrintInvoice::Engine)
 
 RSpec.configure do |config|
-  config.include Capybara::DSL, type: :feature
   config.infer_spec_type_from_file_location!
-  config.raise_errors_for_deprecations!
+  config.use_transactional_fixtures = false
 
-  config.example_status_persistence_file_path = "./spec/examples.txt"
+  if Spree.solidus_gem_version < Gem::Version.new('2.11')
+    config.extend Spree::TestingSupport::AuthorizationHelpers::Request, type: :system
+  end
 end

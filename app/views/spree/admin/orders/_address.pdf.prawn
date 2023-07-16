@@ -7,9 +7,10 @@ anonymous = @order.email =~ /@example.net$/
 
 def address_info(address)
   info = %Q{
-    #{address.first_name} #{address.last_name}
+    #{SolidusSupport.combined_first_and_last_name_in_address? ? address.name : address.full_name}
     #{address.address1}
   }
+
   info += "#{address.address2}\n" if address.address2.present?
   state = address.state ? address.state.abbr : ""
   info += "#{address.zipcode} #{address.city} #{state}\n"
@@ -20,7 +21,7 @@ end
 
 
 data = [
-  [Spree.t(:billing_address), Spree.t(:shipping_address)], 
+  [I18n.t('spree.billing_address'), I18n.t('spree.shipping_address')],
   [address_info(bill_address), address_info(ship_address) + "\n\nvia #{@order.shipments.first.shipping_method.name}"]
 ]
 

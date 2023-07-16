@@ -1,5 +1,5 @@
-module Spree
-  module PrintInvoice
-    VERSION = "1.0.2".freeze
-  end
+# frozen_string_literal: true
+
+module SolidusPrintInvoice
+  VERSION = "1.0.2"
 end

@@ -1,34 +1,44 @@
-lib = File.expand_path('../lib/', __FILE__)
-$:.unshift lib unless $:.include?(lib)
+# frozen_string_literal: true
 
+$:.push File.expand_path('lib', __dir__)
 require 'solidus_print_invoice/version'
 
 Gem::Specification.new do |s|
-  s.platform    = Gem::Platform::RUBY
-  s.name        = 'solidus_print_invoice'
-  s.version     = Spree::PrintInvoice::VERSION
-  s.summary     = 'Print invoices from a spree order'
-  s.homepage    = 'https://github.com/solidusio-contrib/solidus_print_invoice'
+  s.name = 'solidus_print_invoice'
+  s.version = SolidusPrintInvoice::VERSION
+  s.summary = 'Print invoices from a spree order'
+  s.description = \
+    'This extension provides a "Print Invoice" button on the ' \
+    'Admin Orders view screen which generates a PDF of the order details.'
+  s.license = 'BSD-3-Clause'
 
-  s.required_ruby_version = '>= 1.9.3'
+  s.authors = 'Spree & Solidus Community'
+  s.email = 'contact@solidus.io'
+  s.homepage = 'https://github.com/solidusio-contrib/solidus_print_invoice'
 
-  s.files        = `git ls-files`.split("\n")
-  s.test_files   = `git ls-files -- spec/*`.split("\n")
-  s.require_path = 'lib'
-  s.authors      = 'Spree & Solidus Community'
+  if s.respond_to?(:metadata)
+    s.metadata["homepage_uri"] = s.homepage if s.homepage
+    s.metadata["source_code_uri"] = s.homepage if s.homepage
+    # s.metadata["changelog_uri"] = 'TODO'
+  end
+
+  s.platform = Gem::Platform::RUBY
+  s.required_ruby_version = '>= 2.5'
+
+  # Specify which files should be added to the gem when it is released.
+  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  files = Dir.chdir(__dir__) { `git ls-files -z`.split("\x0") }
+
+  s.files = files.grep_v(%r{^(test|spec|features)/})
+  s.test_files = files.grep(%r{^(test|spec|features)/})
+  s.bindir = 'exe'
+  s.executables = files.grep(%r{^exe/}) { |f| File.basename(f) }
+  s.require_paths = ['lib']
+
+  s.add_dependency 'solidus_core', ['>= 2.0.0', '< 5']
+  s.add_dependency 'solidus_support', '~> 0.8'
 
   s.add_dependency 'prawn', '1.0.0'
-  s.add_dependency 'solidus', ['>= 1.0', '< 3']
-  s.add_dependency "solidus_support"
-  s.add_dependency 'deface'
-
-  s.add_development_dependency 'rspec-rails', '~> 3.4'
-  s.add_development_dependency 'capybara'
-  s.add_development_dependency 'capybara-screenshot'
-  s.add_development_dependency 'selenium-webdriver'
-  s.add_development_dependency 'poltergeist'
-  s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'factory_bot_rails'
-  s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'ffaker'
+  s.add_development_dependency 'rails-controller-testing'
+  s.add_development_dependency 'solidus_dev_support', '~> 2.7'
 end
