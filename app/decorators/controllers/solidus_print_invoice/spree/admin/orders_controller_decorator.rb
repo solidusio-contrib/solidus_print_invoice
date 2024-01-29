@@ -5,10 +5,27 @@ module SolidusPrintInvoice
     module Admin
       module OrdersControllerDecorator
         def self.prepended(base)
-          base.respond_to :pdf
-          base.helper ::Spree::Admin::PrintInvoiceHelper
-          base.before_action :load_order, only: :show
-          base.before_action :load_template, only: :show
+          base.class_eval do
+            respond_to :pdf
+            helper ::Spree::Admin::PrintInvoiceHelper
+
+            before_action :load_order,
+                          only: [
+                            :edit,
+                            :complete,
+                            :advance,
+                            :cancel,
+                            :resume,
+                            :approve,
+                            :resend,
+                            :unfinalize_adjustments,
+                            :finalize_adjustments,
+                            :cart,
+                            :confirm,
+                            :show
+                          ]
+            before_action :load_template, only: :show
+          end
         end
 
         def show
@@ -27,6 +44,10 @@ module SolidusPrintInvoice
                      formats: [:pdf],
                      handlers: [:prawn]
             end
+
+            format.html do
+              redirect_to action: :edit
+            end
           end
         end
 
@@ -36,7 +57,7 @@ module SolidusPrintInvoice
           @template ||= params[:template] || 'invoice'
         end
 
-        ::Spree::Admin::OrdersController.prepend self
+        ::Spree::Admin::OrdersController.prepend(self)
       end
     end
   end
