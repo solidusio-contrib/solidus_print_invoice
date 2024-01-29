@@ -4,7 +4,9 @@ module Spree
   module Admin
     module PrintInvoiceHelper
       def font_faces
-        fonts = Prawn::Font::AFM::BUILT_INS.reject { |f| f =~ /zapf|symbol|bold|italic|oblique/i }.map { |f| [f.tr('-', ' '), f] }
+        fonts = Prawn::Font::AFM::BUILT_INS.reject do |f|
+          f =~ /zapf|symbol|bold|italic|oblique/i
+        end.map { |f| [f.tr('-', ' '), f] }
         options_for_select(fonts, Spree::PrintInvoice::Config[:print_invoice_font_face])
       end
 

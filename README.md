@@ -1,7 +1,7 @@
 SolidusPrintInvoice
 ===================
 
-[![CircleCI](https://circleci.com/gh/solidusio-contrib/solidus_print_invoice.svg?style=svg)](https://circleci.com/gh/solidusio-contrib/solidus_print_invoice)
+[![CircleCI](https://circleci.com/gh/jtapia/solidus_print_invoice.svg?style=svg)](https://circleci.com/gh/jtapia/solidus_print_invoice)
 
 This extension provides a "Print Invoice" button on the Admin Orders view screen which generates a PDF of the order details.
 

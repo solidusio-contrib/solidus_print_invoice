@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require 'spree/core'
-require 'deface'
-require_relative '../../app/models/spree/print_invoice_configuration'
+require 'solidus_core'
+require 'solidus_support'
 
 module SolidusPrintInvoice
   class Engine < Rails::Engine
@@ -17,12 +16,10 @@ module SolidusPrintInvoice
       g.test_framework :rspec
     end
 
-    initializer "spree.print_invoice.environment", before: :load_config_initializers do |_app|
-      Spree::PrintInvoice::Config = Spree::PrintInvoiceConfiguration.new
-    end
-
-    initializer "spree.print_invoice.mimetypes" do |_app|
-      Mime::Type.register('application/pdf', :pdf) unless Mime::Type.lookup_by_extension(:pdf)
+    initializer 'spree.print_invoice.mimetypes' do |_app|
+      unless Mime::Type.lookup_by_extension(:pdf)
+        Mime::Type.register('application/pdf', :pdf)
+      end
     end
   end
 end
