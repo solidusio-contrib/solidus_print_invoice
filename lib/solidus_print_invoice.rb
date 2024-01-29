@@ -3,7 +3,7 @@
 require 'solidus_print_invoice/version'
 require 'solidus_print_invoice/engine'
 
-require 'prawn_handler'
+require 'action_view/template/handlers/prawn'
 
 module Spree
   module PrintInvoice
