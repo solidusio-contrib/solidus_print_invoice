@@ -5,27 +5,35 @@ module SolidusPrintInvoice
     module Admin
       module OrdersControllerDecorator
         def self.prepended(base)
-          base.class_eval do
-            respond_to :pdf
-            helper ::Spree::Admin::PrintInvoiceHelper
-          end
+          base.respond_to :pdf
+          base.helper ::Spree::Admin::PrintInvoiceHelper
+          base.before_action :load_order, only: :show
+          base.before_action :load_template, only: :show
         end
 
         def show
-          load_order
           respond_with(@order) do |format|
             format.pdf do
-              template = params[:template] || "invoice"
-              if (template == "invoice") &&
-                 ::Spree::PrintInvoice::Config.use_sequential_number? &&
-                 @order.invoice_number.blank?
+              if (@template == 'invoice') &&
+                ::Spree::PrintInvoice::Config.use_sequential_number? &&
+                @order.invoice_number.blank?
                 @order.invoice_number = ::Spree::PrintInvoice::Config.increase_invoice_number
                 @order.invoice_date = Time.zone.today
                 @order.save!
               end
-              render layout: false, template: "spree/admin/orders/#{template}", formats: [:pdf], handlers: [:prawn]
+
+              render layout: false,
+                     template: "spree/admin/orders/#{@template}",
+                     formats: [:pdf],
+                     handlers: [:prawn]
             end
           end
+        end
+
+        private
+
+        def load_template
+          @template ||= params[:template] || 'invoice'
         end
 
         ::Spree::Admin::OrdersController.prepend self

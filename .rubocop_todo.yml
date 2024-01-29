@@ -9,3 +9,12 @@ Style/MissingRespondToMissing:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Rails/Output:
+  Enabled: false
