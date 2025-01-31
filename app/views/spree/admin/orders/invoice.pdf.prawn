@@ -1,1 +1,1 @@
-render :partial => "print"
+render partial: 'print'

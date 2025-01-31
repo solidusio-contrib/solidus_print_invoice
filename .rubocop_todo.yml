@@ -1,0 +1,20 @@
+Layout/ArgumentAlignment:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false
+
+Style/MissingRespondToMissing:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Rails/Output:
+  Enabled: false

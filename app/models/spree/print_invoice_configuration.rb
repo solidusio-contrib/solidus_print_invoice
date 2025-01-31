@@ -10,11 +10,11 @@ module Spree
     # custom logo if it is not SVG.
     # @return [String] Path to the logo
     preference :print_invoice_logo_path, :string,
-      default: if Spree::Config[:admin_interface_logo].end_with?('.svg')
-                 'logo/solidus_logo.png'
-               else
-                 Spree::Config[:admin_interface_logo]
-                  end
+               default: if Spree::Config[:admin_interface_logo].end_with?('.svg')
+                          'logo/solidus_logo.png'
+                        else
+                          Spree::Config[:admin_interface_logo]
+                        end
 
     preference :print_invoice_logo_scale, :integer, default: 50
     preference :print_invoice_font_face, :string, default: 'Helvetica'

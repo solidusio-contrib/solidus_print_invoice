@@ -1,7 +1,7 @@
 # Address Stuff
 
-bill_address = @order.bill_address
-ship_address = @order.ship_address
+bill_address = @order.try(:bill_address)
+ship_address = @order.try(:ship_address)
 anonymous = @order.email =~ /@example.net$/
 
 

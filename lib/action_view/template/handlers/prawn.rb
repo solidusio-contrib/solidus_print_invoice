@@ -6,7 +6,7 @@ module ActionView
   module Template::Handlers
     class Prawn
       def self.register!
-        Template.register_template_handler :prawn, self
+        ::ActionView::Template.register_template_handler :prawn, self
       end
 
       def self.call(template, source = template.source)
@@ -15,7 +15,7 @@ module ActionView
 
       module DocumentProxy
         def pdf
-          @pdf ||= ::Prawn::Document.new(Spree::PrintInvoice::Config[:prawn_options])
+          @pdf ||= ::Prawn::Document.new(::Spree::PrintInvoice::Config[:prawn_options])
         end
 
         private
@@ -28,4 +28,4 @@ module ActionView
   end
 end
 
-ActionView::Template::Handlers::Prawn.register!
+::ActionView::Template::Handlers::Prawn.register!
